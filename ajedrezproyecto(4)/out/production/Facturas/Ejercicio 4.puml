@@ -1,0 +1,49 @@
+@startuml
+hide circle
+
+class Cliente{
+}
+class Empresa{
+    ruc: String
+    nombre: String
+}
+class Factura{
+    iva: double
+    descuento: double
+    total: double
+}
+class Item{
+    cantidad: int
+    total: double
+
+}
+abstract class ProductoServicio{}
+class Producto{}
+class Servicio{}
+abstract class Descuento{}
+class DescuentoCero{}
+class DescuentoPorcentualAlTotal{}
+class Descuento50PorCiento{}
+class Descuento100AlProductoMasCaro{}
+
+
+Empresa -->"*" ProductoServicio : productos
+Empresa -->"*" Cliente : clientes
+Empresa -->"*" Factura : facturas
+
+Factura -->"*" Item: detalleFactura
+Factura -->"*" Cliente : clientes
+Factura ....> Descuento
+
+ProductoServicio <|-- Producto
+ProductoServicio <|-- Servicio
+
+Cliente ->"*" Item : carritoDeCompras
+Item -> ProductoServicio : productoServicio
+
+Descuento <|-- DescuentoCero
+Descuento <|-- DescuentoPorcentualAlTotal
+DescuentoPorcentualAlTotal <|-- Descuento50PorCiento
+Descuento <|-- Descuento100AlProductoMasCaro
+
+@enduml

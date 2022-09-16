@@ -1,0 +1,149 @@
+@startuml
+hide circle
+
+class Jugador {
+    moverPieza()
+}
+
+class Partida {
+jugador1: Jugador
+jugador2: Jugador
+turnoJ: Jugador
+tablero: Tablero
+ generarTurnos()
+ devolverOpciones()
+ seleccionarOpcion()
+}
+class Tablero{
+tablaF : ArrayList<Pieza>
+letra : ArrayList<String>
+numero : ArrayList<String>
+colorCasillaNegra : String
+colorCasillaBlanca : String
+colorCasillaValidaN : String
+colorCasillaValidaB : String
+colorCasillaComer: String
+colorFichaJ1 : String
+colorFichaJ2 : String
+piezasJugador1 : ArrayList<Pieza>
+piezasJugador2 : ArrayList<Pieza>
+colocarPiezas()
+imprimirTablero()
+}
+
+abstract class Pieza {
+movimientos: ArrayList<Movimiento>
+id: int
+color : String
+
+inicializarMovimiento()
+mover()
+getId()
+}
+
+class Torre {
+id : int
+getId()
+
+}
+
+class Caballo{
+id : int
+getId()
+
+}
+class Alfil{
+id : int
+getId()
+
+}
+
+class Reina{
+id : int
+getId()
+
+}
+
+class Rey{
+id : int
+getId()
+
+}
+
+class Peon{
+id : int
+getId()
+
+}
+
+abstract class Movimiento{
+movimientosValidos : ArrayList<String>
+mostrarMovimientos()
+}
+class Diagonal{
+mostrarMovimientos()
+}
+class EnL2x1{
+mostrarMovimientos()
+}
+class UnoHaciaAdelante{
+mostrarMovimientos()
+}
+class PeonDiagonal{
+mostrarMovimientos()
+}
+
+class UnoAlrededor{
+mostrarMovimientos()
+}
+
+class DosHaciaAdelante{
+}
+
+class LectorDeCasillas{
+lectorCasilla : String
+getCasilla()
+}
+
+class GuardadoPartida{
+
+}
+class CargadoPartida{
+
+}
+class LecturaEscritura{
+nombreDeArchivo : String
+escribirArchivo()
+leerArchivo()
+}
+
+Jugador .> LectorDeCasillas
+Pieza ...> LectorDeCasillas
+
+Movimiento <|-- Diagonal
+Movimiento <|-- EnL2x1
+Movimiento <|-- UnoHaciaAdelante
+Movimiento <|-- PeonDiagonal
+Movimiento <|-- UnoAlrededor
+Movimiento <|-- DosHaciaAdelante
+
+Pieza -->"*" Movimiento
+
+Jugador "2"<-- Partida
+Partida --> Tablero
+Jugador -->"16" Pieza
+Tablero -->"16" Pieza
+Pieza <|--- Caballo
+Pieza <|--- Torre
+Pieza <|--- Peon
+Pieza <|--- Alfil
+Pieza <|--- Reina
+Pieza <|--- Rey
+Partida --> LecturaEscritura
+
+GuardadoPartida --|> LecturaEscritura
+CargadoPartida --|> LecturaEscritura
+
+
+
+@enduml

@@ -1,0 +1,75 @@
+@startuml
+hide circle
+
+class Jugador {
+    moverPieza()
+}
+
+class Partida {
+ iniciarPartida()
+}
+
+
+class Tablero{
+
+}
+
+abstract class Pieza {
+
+}
+
+class Torre {
+
+}
+
+class Caballo{
+
+}
+class Alfil{
+
+}
+
+class Reina{
+
+}
+
+class Rey{
+
+}
+
+class Peon{
+
+}
+
+abstract class Movimiento{}
+class Diagonal{}
+class EnL2x1{}
+class UnoHaciaAdelante{}
+class DiagonalPeon{}
+
+class LectorDeCasillas{}
+
+Jugador .> LectorDeCasillas
+Pieza ...> LectorDeCasillas
+
+Movimiento <|-- Diagonal
+Movimiento <|-- EnL2x1
+Movimiento <|-- UnoHaciaAdelante
+Movimiento <|-- DiagonalPeon
+
+Pieza -->"*" Movimiento
+
+Jugador "2"<-- Partida
+Partida --> Tablero
+Jugador -->"16" Pieza
+Tablero -->"16" Pieza
+Pieza <|--- Caballo
+Pieza <|--- Torre
+Pieza <|--- Peon
+Pieza <|--- Alfil
+Pieza <|--- Reina
+Pieza <|--- Rey
+
+
+
+@enduml
